@@ -1,8 +1,13 @@
 from pathlib import Path
+
 from reportlab.lib.pagesizes import A4
 from reportlab.lib import colors
 from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Paragraph, Spacer
-from reportlab.lib.styles import getSampleStyleSheet
+from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
+from reportlab.lib.enums import TA_RIGHT
+
+from xml.sax.saxutils import escape
+from datetime import date 
 
 from src.models import Submission
 
@@ -22,11 +27,26 @@ def generate_pdf(submission: Submission, output_path: Path) -> None:
     elements = []
     
     # Title
-    elements.append(Paragraph("Soumission", styles["Title"]))
+    elements.append(Paragraph("Submission", styles["Title"]))
     elements.append(Spacer(1, 20))
     
-    # TODO : Infos client
-    
+    # Infos client
+    client_style = ParagraphStyle(
+        "ClientInfo",
+        parent=styles["BodyText"],
+        alignment=TA_RIGHT,
+    )
+
+    client_name = escape(submission.get_client_name())
+    submission_date = date.today().strftime("%d/%m/%Y")
+
+    elements.append(
+        Paragraph(
+            f"To : {client_name}<br/>Created at : {submission_date}",
+            client_style,
+        )
+    )
+    elements.append(Spacer(1, 20))
     # Tableau facture
     rows = [["Code", "Product", "Quantity", "Unit price", "Total"]]
     for line in submission.lines:

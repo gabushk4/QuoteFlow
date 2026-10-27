@@ -19,7 +19,8 @@ class SubmissionLine:
         
 class Submission: 
     """A submission following a demand"""
-    def __init__(self, lines: list[SubmissionLine], taxes: dict[str, Decimal]) -> None:     
+    def __init__(self, lines: list[SubmissionLine], taxes: dict[str, Decimal], client: dict[str, str]) -> None:     
+        self.__client = client
         self.lines = lines   
         self.__subtotal =  sum(
             (line.get_subtotal() for line in lines), 
@@ -45,5 +46,11 @@ class Submission:
             key: value.quantize(Decimal("0.01")) 
             for key, value in self.__taxes_totals.items()
         }
+    
+    def get_client_name(self) -> str:
+        return self.__client["name"]
+    
+    def get_client_email(self) -> str:
+        return self.__client["email"]
         
         

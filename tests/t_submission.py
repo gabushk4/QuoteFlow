@@ -11,16 +11,21 @@ class SubmissionTest (unittest.TestCase):
         "TPS": Decimal("0.05"),
         "TVQ": Decimal("0.09975"),
     }
+    __client = {
+        "name": "Doe, John",
+        "email": "john.doe@exemple.com"
+    }
+    
     
     def test_subtotal(self):
         self.assertEqual(self.__line.get_subtotal(), 200)
     
     def test_taxes(self):
-        submission = Submission([self.__line], self.__taxes)
+        submission = Submission([self.__line], self.__taxes, self.__client)
         self.assertEqual(submission.get_taxes_totals(), {"TPS": Decimal("10"), "TVQ": Decimal("19.95")})
     
     def test_total(self):
-        submission = Submission([self.__line], self.__taxes)
+        submission = Submission([self.__line], self.__taxes, self.__client)
         self.assertEqual(submission.get_total(), Decimal("229.95"))
 
     def test_build_submission_from_demand(self):
@@ -33,7 +38,7 @@ class SubmissionTest (unittest.TestCase):
             "P002": {"quantity": "1"},
         }
 
-        submission = build_submission(catalogue, demand, self.__taxes)
+        submission = build_submission(catalogue, demand, self.__taxes,self.__client)
 
         self.assertEqual(submission.get_subtotal(), Decimal("700.00"))
         self.assertEqual(submission.get_total(), Decimal("804.82"))
