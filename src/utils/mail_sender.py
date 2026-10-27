@@ -22,14 +22,9 @@ def send_pdf(pdf_path: Path, to) -> None:
         subtype="pdf", 
         filename=pdf_path.name
     )
-    print(f"Message {msg}")
-    print(f"connects with {env[keys.SMTP_HOST]} on port {int(env[keys.SMTP_PORT])}...")
     with SMTP_SSL(env[keys.SMTP_HOST], int(env[keys.SMTP_PORT])) as smtp:
-        try:
-            
-            smtp.login(env[keys.SMTP_USERNAME], env[keys.SMTP_PASSWORD])      
-            print(f"Login successful with {env[keys.SMTP_USERNAME]} and {env[keys.SMTP_PASSWORD]}")
-            
+        try:            
+            smtp.login(env[keys.SMTP_USERNAME], env[keys.SMTP_PASSWORD])                  
             smtp.send_message(msg)
             print("Email sent successfully")            
         except Exception as e:
