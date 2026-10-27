@@ -9,10 +9,10 @@ class Product:
         
 class SubmissionLine: 
     """A line in a submission"""
-    def __init__(self, product: Product, quantity: int) -> None:
+    def __init__(self, product: Product, quantity: str) -> None:
         self.product = product
         self.quantity = Decimal(quantity)
-        self.__subtotal = product.price * quantity
+        self.__subtotal = product.price * Decimal(quantity)
     
     def get_subtotal(self) -> Decimal:
         return self.__subtotal.quantize(Decimal("0.01"))

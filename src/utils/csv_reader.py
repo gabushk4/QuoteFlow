@@ -21,9 +21,9 @@ def __validate_fields(csv_reader: csv.DictReader, fields: list[str]) -> None:
             list(actual_fields) if actual_fields is not None else [],
         )
 
-def __validate_length(list: dict[str, dict[str, str]]) -> None:
+def __validate_length(rows: dict[str, dict[str, str]]) -> None:
     """Validates if the length of the CSV is correct."""
-    if (len(list) < 2):
+    if len(rows) < 1:
         raise ValueError("The CSV must have at least 2 lines (1 for the header the other for at least one line of data).")
 
 def _index_by_code(rows: Iterator[dict[str, str]]) -> dict[str, dict[str, str]]:

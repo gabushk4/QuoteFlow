@@ -5,7 +5,7 @@ from src.models import Product, Submission, SubmissionLine
 class SubmissionTest (unittest.TestCase):
     
     __product = Product("123", "TV", "100")
-    __line = SubmissionLine(__product, 2)
+    __line = SubmissionLine(__product, "2")
     __taxes = {
         "TPS": Decimal("0.05"),
         "TVQ": Decimal("0.09975"),

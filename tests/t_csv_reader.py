@@ -80,6 +80,20 @@ class CsvReaderTest(unittest.TestCase):
         
         write_temp_csv(self.__catalogue_empty_data, catalogue_callback)
         write_temp_csv(self.__demand_empty_data, demand_callback)
+
+    def test_single_data_row(self):
+        """Accepts a CSV with a header and one data row."""
+        catalogue_data = [self.__catalogue_valid_data[0], self.__catalogue_valid_data[1]]
+        demand_data = [self.__demand_valid_data[0], self.__demand_valid_data[1]]
+
+        def catalogue_callback(tmp_csv_path: Path) -> None:
+            self.assertEqual(read_catalogue(tmp_csv_path)[self.__test_code], self.__test_valid_catalogue_product)
+
+        def demand_callback(tmp_csv_path: Path) -> None:
+            self.assertEqual(read_demand(tmp_csv_path)[self.__test_code], self.__test_valid_demand_product)
+
+        write_temp_csv(catalogue_data, catalogue_callback)
+        write_temp_csv(demand_data, demand_callback)
     
     def test_duplicate_code(self):
         """Tests a catalogue and a demand file with a duplicated code."""
