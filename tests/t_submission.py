@@ -1,5 +1,6 @@
 from decimal import Decimal
 import unittest
+from src.main import build_submission
 from src.models import Product, Submission, SubmissionLine
 
 class SubmissionTest (unittest.TestCase):
@@ -21,3 +22,18 @@ class SubmissionTest (unittest.TestCase):
     def test_total(self):
         submission = Submission([self.__line], self.__taxes)
         self.assertEqual(submission.get_total(), Decimal("229.95"))
+
+    def test_build_submission_from_demand(self):
+        catalogue = {
+            "P001": {"name": "TV", "price": "100"},
+            "P002": {"name": "Ordinateur", "price": "500"},
+        }
+        demand = {
+            "P001": {"quantity": "2"},
+            "P002": {"quantity": "1"},
+        }
+
+        submission = build_submission(catalogue, demand, self.__taxes)
+
+        self.assertEqual(submission.get_subtotal(), Decimal("700.00"))
+        self.assertEqual(submission.get_total(), Decimal("804.82"))
