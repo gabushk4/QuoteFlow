@@ -1,10 +1,10 @@
 from collections.abc import Iterator
 import csv
+from src.constants.file import PROJECT_ROOT
 from src.error_types import DuplicateCodeError, InvalidFieldsError
 from pathlib import Path
 
 # File paths
-PROJECT_ROOT = Path(__file__).resolve().parents[2]
 CATALOG_READ_FROM = PROJECT_ROOT / "data" / "catalogue.csv"
 DEMAND_READ_FROM = PROJECT_ROOT / "data" / "demande.csv"
 
