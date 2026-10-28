@@ -117,14 +117,6 @@ data/
 tests/                    Tests unitaires
 ```
 
-## Déroulement d'une démonstration
-
-1. Présenter les deux CSV et expliquer comment le code produit relie la demande au catalogue.
-2. Lancer l'application et saisir les coordonnées d'une boîte de test.
-3. Vérifier les produits, quantités et sous-totaux par ligne dans le résumé du terminal.
-4. Ouvrir `data/submission.pdf` pour vérifier le sous-total, les taxes et le total, puis confirmer l'envoi et montrer le courriel reçu.
-5. Présenter les tests qui valident les calculs et la lecture des CSV.
-
 ## Limites actuelles
 
 - L'application est une CLI : elle ne comporte pas encore d'interface Web, d'API ni de base de données.
