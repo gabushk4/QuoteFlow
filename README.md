@@ -9,7 +9,6 @@ QuoteFlow transforme une demande de prix au format CSV en soumission PDF, puis l
 - Calcul du sous-total, de la TPS (5 %) et de la TVQ (9,975 %).
 - Saisie et confirmation des coordonnées du client dans le terminal.
 - Affichage du résumé, génération d'un PDF et envoi en pièce jointe par SMTP SSL.
-- Tests unitaires pour la lecture CSV et les calculs de soumission.
 
 ## Future fonctionnalité
 - Intégration avec un LLM pour détecter et construire un CSV à partir des demandes reçues depuis une boite courriel
