@@ -20,7 +20,7 @@ QuoteFlow transforme une demande de prix au format CSV en soumission PDF, puis l
 
 ## Installation
 
-Depuis la racine du dépôt, crée et active un environnement virtuel :
+Depuis la racine du dépôt, créez et activez un environnement virtuel :
 
 ```bash
 python -m venv .venv
@@ -33,7 +33,7 @@ Dans PowerShell, l'activation se fait avec :
 .venv\Scripts\Activate.ps1
 ```
 
-Installe ensuite les dépendances :
+Installez ensuite les dépendances :
 
 ```bash
 python -m pip install -r requirements.txt
@@ -41,7 +41,7 @@ python -m pip install -r requirements.txt
 
 ## Configuration du courriel
 
-Copie le fichier d'exemple et renseigne les paramètres de votre fournisseur SMTP :
+Copiez le fichier d'exemple et renseignez les paramètres de votre fournisseur SMTP :
 
 ```bash
 cp .env.example .env
@@ -95,12 +95,6 @@ python -m src.main
 ```
 
 Le programme demande le nom et le courriel du client, puis affiche un résumé à confirmer. Appuyez sur Entrée pour générer le PDF, puis de nouveau sur Entrée pour l'envoyer. Le fichier produit est enregistré sous `data/submission.pdf`. `Ctrl+C` annule proprement l'exécution.
-
-## Tests
-
-```bash
-python -m unittest discover -s tests -p 't_*.py'
-```
 
 ## Organisation du projet
 
