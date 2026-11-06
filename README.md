@@ -14,11 +14,34 @@ Les identifiants Gmail déjà traités sont conservés dans `data/processed_ids.
 
 > **Important :** le programme différé envoie toutes les entrées de la file sans demander une nouvelle confirmation. N'ajoutez donc à cette file que des soumissions que vous êtes prêt à envoyer.
 
+![Exemple de demande reçue](docs/demande_exemple.png)
+![Exemple de facture générée](docs/facture_pdf_exemple.png)
+
+## Vérifier rapidement (environ 2 minutes)
+
+python -m venv .venv
+source .venv/bin/activate        # Windows : .venv\Scripts\Activate.ps1
+python -m pip install -r requirements.txt
+python -m unittest discover -s tests -p "t_*.py"
+
+Les tests s'exécutent sans appeler Gmail, Gemini ni SMTP.
+
+## Démarrage complet (environ 15 minutes)
+
+1. Copier `data/catalogue.example.csv` vers `data/catalogue.csv`.
+2. Créer `.env` avec la clé Gemini et les paramètres SMTP (voir plus bas).
+3. Configurer l'accès Gmail (voir « Configurer Gmail »).
+4. Lancer : `python -m src.main`
+
+Utilisez une boîte de test pour vos premiers essais.
+
 ## Prérequis
 
 - Python 3.12 ou plus récent (la syntaxe utilisée dans le point d'entrée requiert Python 3.12+).
 - Un compte Google pour accéder à Gmail et Google AI Studio.
 - Un compte d'envoi courriel et ses paramètres SMTP. Pour Gmail, utilisez un mot de passe d'application lorsque votre compte le permet; n'utilisez pas votre mot de passe Google habituel.
+
+
 
 ## Installation
 
